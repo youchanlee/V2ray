@@ -8,7 +8,7 @@ cyan='\e[96m'
 none='\e[0m'
 
 # Root
-[[ $(id -u) != 0 ]] && echo -e " 请使用 ${red}root ${none}用户运行 ${yellow}~ ${none}" && exit 1
+[[ $(id -u) != 0 ]] && echo -e " 请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}" && exit 1
 
 cmd="apt-get"
 
@@ -19,7 +19,7 @@ if [[ $sys_bit == "i386" || $sys_bit == "i686" ]]; then
 elif [[ $sys_bit == "x86_64" ]]; then
 	v2ray_bit="64"
 else
-	echo -e " 此 ${red}脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}" && exit 1
+	echo -e "  ${red}此脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}" && exit 1
 fi
 
 # 笨笨的检测方法
@@ -36,7 +36,7 @@ if [[ -f /usr/bin/apt-get ]] || [[ -f /usr/bin/yum && -f /bin/systemctl ]]; then
 
 else
 
-	echo -e " 此 ${red}脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}" && exit 1
+	echo -e "   ${red}此脚本${none} 不支持你的系统。 ${yellow}(-_-) ${none}" && exit 1
 
 fi
 
@@ -249,12 +249,12 @@ ws_config() {
 		case $v2ray_port in
 		80)
 			echo
-			echo " ...都说了不能选择 80 端口了咯....."
+			echo " ...不能选择 80 端口....."
 			error
 			;;
 		443)
 			echo
-			echo " ..都说了不能选择 433 端口了咯....."
+			echo " ..不能选择 433 端口....."
 			error
 			;;
 		[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | [1-6][0-5][0-5][0-3][0-5])
@@ -274,7 +274,7 @@ ws_config() {
 	while :; do
 		echo
 		echo -e "请输入一个 $magenta正确的域名$none，一定一定一定要正确，不！能！出！错！"
-		read -p "(例如：233blog.com): " domain
+		read -p "(例如：google.com): " domain
 		[ -z "$domain" ] && error && continue
 		echo
 		echo
@@ -421,7 +421,7 @@ shadowsocks_port_config() {
 		case $ssport in
 		$v2ray_port)
 			echo
-			echo " 不能和 V2Ray 端口一毛一样...."
+			echo " 不能和 V2Ray 端口一样...."
 			error
 			;;
 		[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | [1-6][0-5][0-5][0-3][0-5])
@@ -463,12 +463,12 @@ shadowsocks_password_config() {
 
 	while :; do
 		echo -e "请输入 "$yellow"Shadowsocks"$none" 密码"
-		read -p "$(echo -e "(默认密码: ${magenta}233blog.com$none)"): " sspass
-		[ -z "$sspass" ] && sspass="233blog.com"
+		read -p "$(echo -e "(默认密码: ${magenta}P080nb3m8Gg$none)"): " sspass
+		[ -z "$sspass" ] && sspass="P080nb3m8Gg"
 		case $sspass in
 		*/*)
 			echo
-			echo -e " 由于这个脚本太辣鸡了..所以密码不能包含 $red/$none 这个符号.... "
+			echo -e " 这个脚本密码不能包含 $red/$none 这个符号.... "
 			echo
 			error
 			;;
@@ -520,7 +520,7 @@ shadowsocks_ciphers_config() {
 install_info() {
 	clear
 	echo
-	echo " ....准备安装了咯..看看有毛有配置正确了..."
+	echo " ....准备安装请再检查一下配置是否正确..."
 	echo
 	echo "---------- 安装信息 -------------"
 	echo
@@ -669,7 +669,7 @@ install_v2ray() {
 
 	if ! wget --no-check-certificate -O "$v2ray_tmp_file" $v2ray_download_link; then
 		echo -e "
-        $red 下载 V2Ray 失败啦..可能是你的小鸡鸡的网络太辣鸡了...重新安装也许能解决$none
+        $red 下载 V2Ray 失败...重新安装也许能解决$none
         " && exit 1
 	fi
 
@@ -1222,10 +1222,10 @@ show_config_info() {
 	echo
 	echo -e " $yellow输入 ${cyan}v2ray${none} $yellow即可管理 V2Ray${none}"
 	echo
-	echo -e " ${yellow}V2Ray 客户端使用教程: https://233blog.com/post/20/$none"
+	echo -e " ${yellow}V2Ray 客户端使用教程: https://github.com/youchanlee/V2ray$none"
 	echo
 	if [[ $v2ray_transport_opt == "4" && ! $caddy ]]; then
-		echo -e " $red警告！$none$yellow请自行配置 TLS...教程: https://233blog.com/post/19/$none"
+		echo -e " $red警告！$none$yellow请自行配置 TLS...教程: https://github.com/youchanlee/V2ray$none"
 		echo
 	fi
 	echo "---------- V2Ray 配置信息 -------------"
@@ -1399,7 +1399,7 @@ get_qr_link() {
 			echo
 		else
 			echo
-			echo -e "$red 哎呀呀呀...出错咯...$none"
+			echo -e "$red 出错了...$none"
 			echo
 			echo -e " 请尝试使用${cyan} v2ray qr ${none}生成 V2Ray 配置信息二维码"
 			echo
@@ -1444,7 +1444,7 @@ get_qr_link() {
 			echo
 		else
 			echo
-			echo -e "$red 哎呀呀呀...出错咯...请重试$none"
+			echo -e "$red 出错了...请重试$none"
 			echo
 			echo -e " 请尝试使用${cyan} v2ray qr ${none}生成 V2Ray 配置信息二维码"
 			echo
@@ -1603,7 +1603,7 @@ uninstall() {
 			echo
 			echo "如果你觉得这个脚本有哪些地方不够好的话...请告诉我"
 			echo
-			echo "反馈问题: https://github.com/233boy/v2ray/issus"
+			echo "反馈问题: https://github.com/youchanlee/V2ray"
 			echo
 
 		elif [[ $is_uninstall_v2ray ]]; then
@@ -1652,15 +1652,15 @@ uninstall() {
 			echo
 			echo "如果你觉得这个脚本有哪些地方不够好的话...请告诉我"
 			echo
-			echo "反馈问题: https://github.com/233boy/v2ray/issus"
+			echo "反馈问题: https://github.com/youchanlee/V2ray"
 			echo
 
 		fi
 	else
 		echo -e "
-		$red 大胸弟...你貌似毛有安装 V2Ray ....卸载个鸡鸡哦...$none
+		$red 已经安装了V2Ray...$none
 
-		备注...仅支持卸载使用我(233blog.com)提供的 V2Ray 一键安装脚本
+		备注...仅支持卸载使用此脚本提供的 V2Ray 一键安装脚本
 		" && exit 1
 	fi
 
@@ -1677,9 +1677,9 @@ local)
 	;;
 *)
 	echo
-	echo -e " 大佬...你输入的这个参数 <$red $args $none> ...这个是什么鬼啊...脚本不认识它哇"
+	echo -e " ...你输入的这个参数 <$red $args $none> ...脚本识别不出来"
 	echo
-	echo -e " 这个辣鸡脚本仅支持输入$green local / online $none参数"
+	echo -e " 这个脚本仅支持输入$green local / online $none参数"
 	echo
 	echo -e " 输入$yellow local $none即是使用本地安装"
 	echo
@@ -1692,11 +1692,11 @@ esac
 clear
 while :; do
 	echo
-	echo "........... V2Ray 一键安装脚本 & 管理脚本 by 233blog.com .........."
+	echo "........... V2Ray 一键安装脚本 & 管理脚本  .........."
 	echo
-	echo "帮助说明: https://233blog.com/post/16/"
+	echo "帮助说明: https://github.com/youchanlee/V2ray"
 	echo
-	echo "搭建教程: https://233blog.com/post/17/"
+	echo "搭建教程: https://github.com/youchanlee/V2ray"
 	echo
 	echo " 1. 安装"
 	echo
